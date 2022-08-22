@@ -47,7 +47,7 @@ class Game:
 
 
 
-        return self.table
+        return played
 
 
 

@@ -38,3 +38,19 @@ class Human(Player):
             print(r)
             if r>0 and r<5:
                 return int(r)-1
+
+class AI(Player):
+    def __init__(self,strategie):
+        self.hand = []
+        self.taken = []
+        self.strategie = strategie
+
+    def play(self,table):
+        choosed = self.strategie.play(table,self.hand)
+        for x in range(len(self.hand)):
+            if choosed == self.hand[x]:
+                c = x
+        self.hand.pop(c)
+        return choosed
+    def choose(self,card,table):
+        return self.strategie.choose(card,table,self.hand)
