@@ -1,6 +1,5 @@
 from game import *
 from strategies import *
-import os
 from utils import calc_points
 if __name__ == '__main__':
     maingame = Game([Human(),AI(StratMini()),AI(StratMini()),AI(StratMaxi()),AI(StratMaxi())])
