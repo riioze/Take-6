@@ -1,6 +1,7 @@
 
 
 class Player:
+    """parent class for the player classes don't use it use Human ans AI classes instead"""
     def __init__(self):
         self.hand = []
         self.taken = []
@@ -10,8 +11,10 @@ class Player:
 
 
 class Human(Player):
+    """Use an instance of this class to allow a human player to play"""
 
     def play(self,table):
+        """called by the turn method of the game. Allow the human player to choose the card to play"""
         print('Here is the table')
         for line in table:
             print(line)
@@ -28,6 +31,7 @@ class Human(Player):
         return self.hand.pop(cardn)
 
     def choose(self,card,table):
+        """called by the turn method of Game, allow the Human player to choose the column to put his card when it's bellow all the others"""
         print('card :',card)
         print('table : ')
         for line in table:
@@ -40,17 +44,21 @@ class Human(Player):
                 return int(r)-1
 
 class AI(Player):
-    def __init__(self,strategie):
+    """use this class to allow an AI to play"""
+    def __init__(self,strategy):
+        """The strategy argument must be an instance of the strat used and not the class itself"""
         self.hand = []
         self.taken = []
-        self.strategie = strategie
+        self.strategy = strategy
 
     def play(self,table):
-        choosed = self.strategie.play(table,self.hand)
+        """allow the AI to apply its strategy to play the card"""
+        choosed = self.strategy.play(table,self.hand)
         for x in range(len(self.hand)):
             if choosed == self.hand[x]:
                 c = x
         self.hand.pop(c)
         return choosed
     def choose(self,card,table):
-        return self.strategie.choose(card,table,self.hand)
+        """allow the AI to apply its strategy to choose the column to put his card when it's bellow all the others"""
+        return self.strategy.choose(card,table,self.hand)

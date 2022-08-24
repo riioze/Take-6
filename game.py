@@ -3,6 +3,11 @@ from cards import *
 from utils import *
 from random import shuffle
 class Game:
+
+    """
+    Class managing all the game after creating the instance use the method turn to play
+    """
+
     def __init__(self,playerlist):
         self.playerlist = playerlist
         self.deck = [e for e in cardlist]
@@ -11,6 +16,10 @@ class Game:
 
 
     def distribute(self):
+        """
+        method used to distribute randomly the cards to the players
+        don't used it it's automatically called at the creation of the instance
+        """
         shuffle(self.deck)
         for player in self.playerlist:
             for x in range(10):
@@ -20,6 +29,7 @@ class Game:
             self.table.append([self.deck.pop()])
 
     def turn(self):
+        """method to call to simulate a turn"""
         played = []
         for player in self.playerlist:
             played.append((player,player.play(self.table)))
@@ -52,6 +62,7 @@ class Game:
 
 
     def __repr__(self):
+        """called on print"""
         r = 'Players : \n'
         for x in range(len(self.playerlist)):
             r+='player {} : {}\n'.format(x+1,self.playerlist[x].__repr__())
