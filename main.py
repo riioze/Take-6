@@ -1,8 +1,9 @@
 from game import *
 from strategies import *
 import os
+from utils import calc_points
 if __name__ == '__main__':
-    maingame = Game([Human(),AI(StratMini())])
+    maingame = Game([Human(),AI(StratMini()),AI(StratMini()),AI(StratMaxi()),AI(StratMaxi())])
 
     print('Youre hand : ', maingame.playerlist[0].hand)
 
@@ -12,4 +13,7 @@ if __name__ == '__main__':
 
     for x in range(10):
         played = maingame.turn()
-        print('you now have {} points'.format(sum([val for n,val in maingame.playerlist[0].taken])))
+        print('you now have {} points'.format(calc_points(maingame.playerlist[0].taken)))
+
+    for x in range(len(maingame.playerlist)):
+        print('player {} : {} points'.format(x+1,calc_points(maingame.playerlist[x].taken)))
