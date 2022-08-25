@@ -22,8 +22,11 @@ class Game:
         """
         shuffle(self.deck)
         for player in self.playerlist:
+            if type(player) == AI:
+                player.strategy.nplayer = len(self.playerlist)
             for x in range(10):
                 player.hand.append(self.deck.pop())
+
         self.table = []
         for x in range(4):
             self.table.append([self.deck.pop()])

@@ -1,4 +1,4 @@
-
+from random import choice,randint
 
 class StratMini:
     def play(self,table,hand):
@@ -33,3 +33,9 @@ class StratMaxi:
                 mini = s
                 c=x
         return c
+
+class StratRandom:
+        def play(self,table,hand):
+            return choice(hand)
+        def choose(self,card,table,hand):
+            return randint(0,3)
